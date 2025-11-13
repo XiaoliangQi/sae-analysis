@@ -1,4 +1,8 @@
-This is a repository for doing dictionary learning via sparse autoencoders on neural network activations. It was developed by Samuel Marks, Adam Karvonen, and Aaron Mueller. 
+# SAE Analysis
+
+This repository is for analyzing SAEs (Sparse Autoencoders) on neural network activations. It uses the SAE developed by Samuel Marks, Adam Karvonen, and Aaron Mueller. The method also applies to other SAE. In `sae_test.py`, we obtain the features encoded for a given input prompt, and then decode a feature to see what tokens it corresponds to. 
+
+# README of the dictionary_learning repository
 
 For accessing, saving, and intervening on NN activations, we use the [`nnsight`](http://nnsight.net/) package; as of March 2024, `nnsight` is under active development and may undergo breaking changes. That said, `nnsight` is easy to use and quick to learn; if you plan to modify this repo, then we recommend going through the main `nnsight` demo [here](https://nnsight.net/notebooks/tutorials/walkthrough/).
 
