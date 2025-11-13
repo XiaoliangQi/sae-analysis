@@ -2,6 +2,18 @@
 
 This repository is for analyzing SAEs (Sparse Autoencoders) on neural network activations. It uses the SAE developed by Samuel Marks, Adam Karvonen, and Aaron Mueller. The method also applies to other SAE. In `sae_test.py`, we obtain the features encoded for a given input prompt, and then decode a feature to see what tokens it corresponds to. 
 
+## Local scripts
+
+- **sae_test.py**
+  - Loads EleutherAI/pythia-70m-deduped and a pretrained SAE dictionary for a specified site (e.g., `resid_out_layer3`).
+  - Extracts the decoder from `ae.pt`, selects a single “strong” latent (by max column norm), decodes it into the residual stream for the last token of a prompt, and injects it at the chosen layer via a forward hook.
+  - Runs baseline vs patched forwards, then reports tokens whose next-token logits increased the most and the KL divergence between the two distributions.
+
+- **sae_test_with_prompt.py**
+  - Extends the above by also extracting the encoder. It uses the model’s hidden state at the target layer to compute input-dependent feature activations and selects the top-activated feature at the last token (using its actual magnitude).
+  - Injects the decoded residual at that position and compares logits as above.
+  - Additionally generates and saves a Matplotlib figure comparing base vs patched logits (and their delta) for top tokens.
+
 # README of the dictionary_learning repository
 
 For accessing, saving, and intervening on NN activations, we use the [`nnsight`](http://nnsight.net/) package; as of March 2024, `nnsight` is under active development and may undergo breaking changes. That said, `nnsight` is easy to use and quick to learn; if you plan to modify this repo, then we recommend going through the main `nnsight` demo [here](https://nnsight.net/notebooks/tutorials/walkthrough/).
