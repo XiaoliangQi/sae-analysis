@@ -2,6 +2,25 @@
 
 This repository is for analyzing SAEs (Sparse Autoencoders) on neural network activations. It uses the SAE developed by Samuel Marks, Adam Karvonen, and Aaron Mueller. The method also applies to other SAE. In `sae_test.py`, we obtain the features encoded for a given input prompt, and then decode a feature to see what tokens it corresponds to. 
 
+Install the requirements:
+```bash
+uv venv .venv && source .venv/bin/activate && uv pip install .
+uv pip install --upgrade pip
+uv pip install torch torchvision torchaudio
+
+# 3) Core libs
+uv pip install transformers accelerate einops datasets
+# Anthropic/Alignment SAE toolkit
+uv pip install dictionary-learning
+# (optional) convenience libs
+uv pip install tqdm numpy matplotlib
+```
+
+Download the pretrained SAE dictionaries:
+```bash
+./pretrained_dictionary_downloader.sh
+```
+
 ## Local scripts
 
 - **sae_test.py**
